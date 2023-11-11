@@ -1,6 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-
+VAGRANTFILE_API_VERSION = "2"
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -19,9 +19,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "ansibleMachine" do |ansibleMachine|
     ansibleMachine.vm.box = "bento/ubuntu-20.04"
-    ansibleMachine.vm.network "private_network", ip: "192.168.50.4",
-    name: "vboxnet3"
-    ansibleMachine.vm.provision "file", source: "scripts/ansibleMachine.sh", destination: "ansibleMachine"
+   # config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+    ansibleMachine.vm.network "private_network", ip: "192.168.50.4"
+    ansibleMachine.vm.provision "shell", path: "scripts/ansibleMachine.sh"
     ansibleMachine.vm.provider "virtualbox" do |v|
       v.name = "ansibleMachine"
       config.vm.box = "bento/ubuntu-20.04"
@@ -30,8 +30,10 @@ Vagrant.configure("2") do |config|
     
     config.vm.define "web" do |web|
       web.vm.box = "centos/8"
-      web.vm.provider "vmware" do |v|
-      v.name = "web"
+      web.vm.network "private_network", ip: "192.168.50.20"
+      web.vm.provider "virtualbox" do |v|
+        v.name = "web"
+        config.vm.box = "bento/ubuntu-20.04"
     end
   end
 
@@ -42,6 +44,28 @@ Vagrant.configure("2") do |config|
     ans.vm.provider "vmware" do |v|
      v.name = "ansibleControlVmware"
    end   
+
+  
+  
+
+
+   #hosts.each do |host|
+   # config.vm.define host['name'] do |node|
+   #   node.vm.box = host['box'] ||= DEFAULT_BASE_BOX
+   #   node.vm.box_url = host['box_url'] if host.key? 'box_url'
+
+#      node.vm.hostname = host['name']
+ #     node.vm.network :private_network, network_options(host)
+  #    custom_synced_folders(node.vm, host)
+
+#      node.vm.provider :virtualbox do |vb|
+        # WARNING: if the name of the current directory is the same as the
+        # host name, this will fail.
+ #       vb.customize ['modifyvm', :id, '--groups', PROJECT_NAME]
+  #    end
+   # end
+ # end
+
 
 end
  #s config.vm.env.VAGRANT_DEFAULT_PROVIDER="VirtualBox"
