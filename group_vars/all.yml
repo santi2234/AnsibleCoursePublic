@@ -9,7 +9,6 @@
 #repo's en packages installen
 inventory:
   - /etc/ansible/hosts
-
 rhbase_repositories: 
   - epel-release
 rhbase_install_packages: 
@@ -49,7 +48,6 @@ rhbase_users:
 rhbase_ssh_user: 
 rhbase_ssh_key: 
 
-#nieuwe SSH laten generen want 'dylano' moet naar 'Dylan verander worden'
 #MOTD
 rhbase_motd: 
 rhbase_dynamic_motd: 
