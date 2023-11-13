@@ -1,0 +1,55 @@
+# group_vars/all.yml
+# Variables visible to all nodes
+#ERROR: Host_vars word niet afgelopen voor variabelenµ
+#gevonden door te kijken of deze items werden toegevoegd bij de provision 
+#en bij uitvoeren commando firewall-cmd --list-all
+#kreeg ik bevestiging dat deze niet toegevoegd werden
+---
+
+#repo's en packages installen
+inventory:
+  - /etc/ansible/hosts
+
+rhbase_repositories: 
+  - epel-release
+rhbase_install_packages: 
+  - bash-completion, bash-completion-extras
+  - bind, bind-utils
+  - git
+  - nano
+  - tree
+  - vim-enhanced
+  - wget
+#groups
+rhbase_user_groups:
+  - management
+  - sales
+  - it
+  - technical
+  - public
+# Users
+# MD5-encryptie
+rhbase_users: 
+  - name: 
+    comment: 
+    password: 
+    groups: 
+      - wheel
+      - bind
+      - it
+      - public
+  - name: 
+    password: ''
+    comment: ''
+    groups:
+      - management
+      - public
+  
+#ssh key
+rhbase_ssh_user: 
+rhbase_ssh_key: 
+
+#nieuwe SSH laten generen want 'dylano' moet naar 'Dylan verander worden'
+#MOTD
+rhbase_motd: 
+rhbase_dynamic_motd: 

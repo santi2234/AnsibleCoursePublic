@@ -1,0 +1,5 @@
+[webservers]
+- name: web1 Webserver
+  ip: 192.168.50.20
+- name: web2
+  ip: 192.168.50.30
