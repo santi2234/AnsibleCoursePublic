@@ -1,0 +1,1 @@
+sudo cp /vagrant/keys/web1.pub /vagrant/.ssh/web1.pub
