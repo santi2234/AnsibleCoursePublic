@@ -1,5 +1,5 @@
 [webservers]
-web1.santi.com
+web1.santi.com=192.168.50.20 ansible_user=santi
 
 
 # # Above is a grouped host variable, host variables are defined

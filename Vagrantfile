@@ -26,8 +26,11 @@ Vagrant.configure("2") do |config|
       v.name = "ansibleMachine"
       config.vm.box = "bento/ubuntu-20.04"
     end
+    ansibleMachine.vm.provision "ansible" do |ansible|
+      ansible.playbook = "/vagrant/playbooks/"
+    end
   end
-    
+
     config.vm.define "web" do |web|
       web.vm.box = "centos/8"
       web.vm.network "private_network", ip: "192.168.50.20"
@@ -35,6 +38,7 @@ Vagrant.configure("2") do |config|
         v.name = "web"
         config.vm.box = "bento/ubuntu-20.04"
     end
+    web.vm.provision "shell", path: "scripts/webscript.sh"
   end
 
 
